@@ -50,6 +50,10 @@ if defined?(ActiveRecord::Base)
           def attr_encrypted(*attrs)
             super
             attrs.reject { |attr| attr.is_a?(Hash) }.each { |attr| alias_method "#{attr}_before_type_cast", attr }
+
+            define_method("#{attribute}_changed?") do
+              send(attribute) != decrypt(attribute, send("#{encrypted_attribute_name}_was"))
+            end
           end
 
           def attribute_instance_methods_as_symbols
