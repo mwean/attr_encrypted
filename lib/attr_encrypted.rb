@@ -350,7 +350,7 @@ module AttrEncrypted
   protected
 
   def attribute_instance_methods_as_symbols
-    Rails.logger.info "DataSnapshot - NO DB CONNECTION!!!!"
+    Rails.logger.info "DataSnapshot - NO DB CONNECTION!!!!" if Rails.logger
     instance_methods.collect { |method| method.to_sym }
   end
 
