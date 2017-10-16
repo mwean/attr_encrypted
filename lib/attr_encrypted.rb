@@ -128,8 +128,8 @@ module AttrEncrypted
       salt_name = "#{encrypted_attribute_name}_salt".to_sym
 
       instance_methods_as_symbols = attribute_instance_methods_as_symbols
-      Rails.logger.info "DataSnapshot: #{instance_methods_as_symbols}" if name == "DataSnapshot"
-      # attr_reader encrypted_attribute_name unless instance_methods_as_symbols.include?(encrypted_attribute_name)
+      Rails.logger.info "DataSnapshot: #{instance_methods_as_symbols.sort.join("\n")}" if name == "DataSnapshot" && attribute == :data
+      # attr_reader encrypted_attribute_name unless.include?(encrypted_attribute_name)
       # attr_writer encrypted_attribute_name unless instance_methods_as_symbols.include?(:"#{encrypted_attribute_name}=")
 
       if options[:mode] == :per_attribute_iv_and_salt
@@ -350,6 +350,7 @@ module AttrEncrypted
   protected
 
   def attribute_instance_methods_as_symbols
+    Rails.logger.info "DataSnapshot - NO DB CONNECTION!!!!"
     instance_methods.collect { |method| method.to_sym }
   end
 
