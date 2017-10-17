@@ -139,7 +139,7 @@ module AttrEncrypted
           Rails.logger.info "DataSnapshot - reader not defined!"
         end
 
-        attr_reader encrypted_attribute_name
+        # attr_reader encrypted_attribute_name
       end
 
       unless instance_methods_as_symbols.include?(:"#{encrypted_attribute_name}=")
@@ -147,7 +147,7 @@ module AttrEncrypted
           Rails.logger.info "DataSnapshot - writer not defined!"
         end
 
-        attr_writer encrypted_attribute_name
+        # attr_writer encrypted_attribute_name
       end
 
       if options[:mode] == :per_attribute_iv_and_salt
