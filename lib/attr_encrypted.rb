@@ -128,8 +128,6 @@ module AttrEncrypted
       salt_name = "#{encrypted_attribute_name}_salt".to_sym
 
       instance_methods_as_symbols = attribute_instance_methods_as_symbols
-      attr_reader encrypted_attribute_name unless instance_methods_as_symbols.include?(encrypted_attribute_name)
-      attr_writer encrypted_attribute_name unless instance_methods_as_symbols.include?(:"#{encrypted_attribute_name}=")
 
       if options[:mode] == :per_attribute_iv_and_salt
         attr_reader iv_name unless instance_methods_as_symbols.include?(iv_name)
